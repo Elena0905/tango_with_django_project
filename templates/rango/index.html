@@ -1,37 +1,35 @@
 <!DOCTYPE html>
-{% extends 'rango/base.html' %}
 {% load staticfiles %} 
-<html><head><title>{% block title_block1 %}Homepage{% endblock %}</title>
 </head> <body><h1>Rango says...</h1> <div>
 hey there partner! <br />
 <strong>{{ boldmessage }}</strong><br />
-</head> <body><h2>Most Liked Categories</h2> <div>
-<ul>
-</div> <div>
-{% if categories %}
-<ul>
+</div> 
+<h2>Most Liked Categories</h2>
+<div>{% if categories %}
+ <ul>
 {% for category in categories %}
-<li>
-<a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
+<li><a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a>
 </li>
-{% endfor %}
-</ul>
-{% else %}
-<strong>There are no categories present.</strong>
-{% endif %}
-</div>
-</head> <body><h2>Most Viewed Pages</h2> <div>
-</ul>
-{% if pages %}
-<ul>
-{% for page in pages %}
- <li><a href="{{ page.url }}">{{ page.title }}</a></li>
  {% endfor %}
 </ul>
 {% else %}
-<strong>There are no pages present.</strong>
-{% endif %}
-<img src="/static/images/rango.jpg" alt="Picture of Rango" />
+ <strong>There are no categories present.</strong>
+ {% endif %}
+ </div>
+<h2>Most Viewed Pages</h2>
+{% if pages %}
+<ul>
+ {% for p in pages %}
+<li><a href="{{ p.url }}">{{ p.title }}</a></li>
+ {% endfor %}
+ </ul>
+ {% else %}
+ <strong>There are no pages present.</strong>
+ {% endif %}
+<div>
+<a href="/rango/about/">About Rango</a><br />
+<img src="{% static "images/rango.jpg" %}"
+alt="Picture of Rango" />
 </div>
 </body>
 </html>
