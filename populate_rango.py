@@ -4,7 +4,7 @@ import django
 django.setup()
 from rango.models import Category, Page
 def populate():
-    python_pages=[{'title': 'Official Python Tutorial','url':'http://docs.python.org/3/tutorial/','views':22},
+    python_pages=[{'title':'Official Python Tutorial','url':'http://docs.python.org/3/tutorial/','views':100},
                   {'title':'How to Think like a Computer Scientist','url':'http://www.greenteapress.com/thinkpython/','views':200},
                   {'title':'Learn Python in 10 Minutes','url':'http://www.korokithakis.net/tutorials/python/','views':330}]
     
@@ -29,7 +29,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat,cat_data)
         for p in cat_data['pages']:
-            add_page(c, p['title'], p['url'])
+            add_page(c, p['title'], p['url'],p['views'])
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
                     print(f'- {c}: {p}')
