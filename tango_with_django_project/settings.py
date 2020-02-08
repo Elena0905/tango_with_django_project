@@ -29,6 +29,7 @@ SECRET_KEY = 'qnzyj@wbqd9jn_1w(lzzmhel&(_#gy2qnl@bfgac*rh-06y7w5'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_URL = 'rango:login'
 
 
 # Application definition
@@ -95,6 +96,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': { 'min_length': 6, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -103,6 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+PASSWORD_HASHERS = ( 'django.contrib.auth.hashers.PBKDF2PasswordHasher', 'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher', )
+
 
 
 # Internationalization
